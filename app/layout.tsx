@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/assets/styles/globals.css"
+import "@/assets/styles/globals.css";
 import { APP_NAME, APP_DESCRIPTION, SERVER_URL } from "@/lib/constants";
-
 import { ThemeProvider } from "next-themes";
-
+import { Toaster } from "@/components/ui/sonner";
+import Header from "@/components/shared/header";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,15 +26,41 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className}`}>
-      <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <div className="flex h-screen flex-col">
+            <Header />
+            <main className="flex-1 wrapper">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
