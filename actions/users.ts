@@ -44,3 +44,20 @@ export const signAction = async (email: string, password: string) => {
       return { error: new Error(errorMessage) }; 
     }
 };
+
+
+
+export const logOutAction = async () => {
+    try {
+      const { auth } = await createClient();
+      
+      const { error } = await auth.signOut();
+  
+      if (error) throw error;
+  
+      return { error: null };
+    } catch (error) {
+      const { errorMessage } = handleError(error);
+      return { error: new Error(errorMessage) };
+    }
+  };
